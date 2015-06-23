@@ -2,7 +2,7 @@
 'context-menu':
   'atom-text-editor': [
     {
-      'label': 'Toggle atom-mermaid'
+      'label': 'Mermaid Preview'
       'command': 'atom-mermaid:toggle'
     }
   ]
@@ -10,10 +10,10 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'atom-mermaid'
+      'label': 'Mermaid Preview'
       'submenu': [
         {
-          'label': 'Toggle'
+          'label': 'Toggle Preview'
           'command': 'atom-mermaid:toggle'
         }
       ]
