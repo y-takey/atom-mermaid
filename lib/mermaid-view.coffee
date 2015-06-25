@@ -5,7 +5,7 @@ _                     = require 'underscore-plus'
 
 module.exports =
   MERMAID_PROTOCOL: "mermaid-preview:"
-  MermaidView: class AtomMermaidView extends ScrollView
+  MermaidView: class MermaidView extends ScrollView
 
     atom.deserializers.add(this)
 
@@ -14,7 +14,7 @@ module.exports =
     onDidChangeModified : -> new Disposable()
 
     @deserialize: (state) ->
-      new AtomMermaidView(state)
+      new MermaidView(state)
 
     @content: ->
       @div class: 'atom-mermaid-preview native-key-bindings', tabindex: -1
@@ -32,7 +32,7 @@ module.exports =
             @subscribeToFilePath(filePath)
 
     serialize: ->
-      deserializer : 'AtomMermaidView'
+      deserializer : 'MermaidView'
       filePath     : @getPath()
       editorId     : @editorId
 

@@ -1,10 +1,9 @@
 url = require 'url'
 {mermaidAPI} = require 'mermaid'
-{MERMAID_PROTOCOL, MermaidView} = require './atom-mermaid-view'
+{MERMAID_PROTOCOL, MermaidView} = require './mermaid-view'
 {CompositeDisposable} = require 'atom'
 
 module.exports = AtomMermaid =
-  atomMermaidView: null
   modalPanel: null
   subscriptions: null
 
@@ -35,7 +34,7 @@ module.exports = AtomMermaid =
     @subscriptions.dispose()
 
   serialize: ->
-    atomMermaidViewState: @atomMermaidView.serialize()
+    mermaidViewState: @mermaidView.serialize()
 
   toggle: ->
     editor = atom.workspace.getActiveTextEditor()
