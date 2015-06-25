@@ -1,4 +1,6 @@
-AtomMermaidView = require './atom-mermaid-view'
+url = require 'url'
+{mermaidAPI} = require 'mermaid'
+{MERMAID_PROTOCOL, MermaidView} = require './atom-mermaid-view'
 {CompositeDisposable} = require 'atom'
 
 module.exports = AtomMermaid =
@@ -7,27 +9,47 @@ module.exports = AtomMermaid =
   subscriptions: null
 
   activate: (state) ->
-    @atomMermaidView = new AtomMermaidView(state.atomMermaidViewState)
-    @modalPanel = atom.workspace.addModalPanel(item: @atomMermaidView.getElement(), visible: false)
 
-    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
-
-    # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'atom-mermaid:toggle': => @toggle()
 
+    atom.workspace.addOpener (uriToOpen) ->
+      try
+        {protocol, host, pathname} = url.parse(uriToOpen)
+      catch error
+        return
+
+      return unless protocol is MERMAID_PROTOCOL
+
+      try
+        pathname = decodeURI(pathname) if pathname
+      catch error
+        return
+
+      if host is 'editor'
+        new MermaidView(editorId: pathname.substring(1))
+      else
+        new MermaidView(filePath: pathname)
+
   deactivate: ->
-    @modalPanel.destroy()
     @subscriptions.dispose()
-    @atomMermaidView.destroy()
 
   serialize: ->
     atomMermaidViewState: @atomMermaidView.serialize()
 
   toggle: ->
-    console.log 'AtomMermaid was toggled!'
+    editor = atom.workspace.getActiveTextEditor()
+    return unless editor?
 
-    if @modalPanel.isVisible()
-      @modalPanel.hide()
-    else
-      @modalPanel.show()
+    uri = "#{MERMAID_PROTOCOL}//editor/#{editor.id}"
+
+    previewPane = atom.workspace.paneForURI(uri)
+    if previewPane
+      previewPane.destroyItem(previewPane.itemForURI(uri))
+      return
+
+    previousActivePane = atom.workspace.getActivePane()
+    atom.workspace.open(uri, split: 'right', searchAllPanes: true).done (mermaidView) ->
+      if mermaidView instanceof MermaidView
+        mermaidView.renderHTML()
+        previousActivePane.activate()

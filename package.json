@@ -1,6 +1,6 @@
 {
   "name": "atom-mermaid",
-  "main": "./lib/main",
+  "main": "./lib/atom-mermaid",
   "version": "0.0.1",
   "description": "Preview diagrams and flowcharts by mermaid",
   "keywords": [
@@ -14,6 +14,8 @@
     "atom": ">=0.174.0 <2.0.0"
   },
   "dependencies": {
-    "mermaidAPI": "~0.5.1"
+    "atom-space-pen-views": "^2.0.5",
+    "underscore-plus": "^1.6.6",
+    "mermaid": "~0.5.1"
   }
 }
