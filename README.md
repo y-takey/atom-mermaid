@@ -1,5 +1,28 @@
 # atom-mermaid package
 
-A short description of your package.
+Preview diagrams and flowcharts by mermaid library.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+# Usage
+
+`right click and select [Mermaid Preview]`
+
+or
+
+`select menu-bar[Packages -> Mermaid Preview -> Toggle Preview]`
+
+or
+
+`ctrl + option + o` (Mac)  `ctrl + alt + o` (Windows probably..)
+
+![atom-mermaid in action](https://github.com/y-takey/atom-mermaid/blob/master/atom-mermaid-example.gif)
+
+About markdown syntax, Please see [Flowchart](http://knsv.github.io/mermaid/flowchart.html) , [Sequence Diagram](http://knsv.github.io/mermaid/sequenceDiagram.html) and [Gantt Diagram](http://knsv.github.io/mermaid/gantt.html)
+
+# Todos
+
+* [ ] show snippet.  e.g.) when types `graph TD;` , show `A-- foo -->B[bar]\nB-.->C((baz)) `
+* [ ] error handling.
+* [ ] styling. Bigger diagram, font,, etc
+
+# Credits
+Many thanks to the [mermaid](https://github.com/knsv/mermaid)  project!
