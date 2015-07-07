@@ -1,5 +1,4 @@
 url = require 'url'
-{mermaidAPI} = require 'mermaid'
 {MERMAID_PROTOCOL, MermaidView} = require './mermaid-view'
 {CompositeDisposable} = require 'atom'
 

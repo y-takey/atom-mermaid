@@ -16,6 +16,7 @@
   "dependencies": {
     "atom-space-pen-views": "^2.0.5",
     "underscore-plus": "^1.6.6",
-    "mermaid": "~0.5.1"
+    "mermaid": "~0.5.1",
+    "d3": "~3.4.13"
   }
 }

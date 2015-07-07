@@ -2,6 +2,10 @@ path                  = require 'path'
 {CompositeDisposable, Disposable} = require 'atom'
 {$, $$$, ScrollView}  = require 'atom-space-pen-views'
 _                     = require 'underscore-plus'
+# Work around: references window object in dagre-d3/lib/d3.js
+d3                    = require 'd3'
+window.d3 = d3
+{mermaidAPI} = require 'mermaid'
 
 module.exports =
   MERMAID_PROTOCOL: "mermaid-preview:"
@@ -85,10 +89,13 @@ module.exports =
       @renderHTMLCode() if @editor?
 
     renderHTMLCode: (text) ->
-      iframe = document.createElement("iframe")
-      iframe.setAttribute("sandbox", "allow-scripts allow-same-origin")
-      iframe.src = @getPath()
-      @html $ iframe
+      mmdText = @editor.getText()
+      div = document.createElement("div")
+      div.id = "mmd-tab"
+      div.innerHTML = mmdText
+      @html $ div
+      mermaid.init(undefined, "#mmd-tab")
+
       @trigger('atom-mermaid-preview:html-changed')
       atom.commands.dispatch 'atom-mermaid-preview', 'html-changed'
 
