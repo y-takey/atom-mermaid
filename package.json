@@ -1,10 +1,9 @@
 {
   "name": "atom-mermaid",
   "main": "./lib/atom-mermaid",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Preview diagrams and flowcharts by mermaid",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
     "atom-workspace": "atom-mermaid:toggle"
   },
