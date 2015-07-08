@@ -8,7 +8,7 @@
   "activationCommands": {
     "atom-workspace": "atom-mermaid:toggle"
   },
-  "repository": "https://github.com/atom/atom-mermaid",
+  "repository": "https://github.com/y-takey/atom-mermaid",
   "license": "MIT",
   "engines": {
     "atom": ">=0.174.0 <2.0.0"

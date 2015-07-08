@@ -2,6 +2,23 @@
 
 Preview diagrams and flowcharts by mermaid library.
 
+## Installation
+
+In Atom, open [Preferences > Packages], search for `mermaid` package. Once it found, click `Install` button to install package.
+
+### Manual installation
+
+You can install the latest version manually from console:
+
+```bash
+cd ~/.atom/packages
+git clone https://github.com/y-takey/atom-mermaid
+cd atom-mermaid
+npm install
+```
+
+Then restart Atom editor.
+
 # Usage
 
 `right click and select [Mermaid Preview]`
@@ -12,7 +29,8 @@ or
 
 or
 
-`ctrl + option + o` (Mac)  `ctrl + alt + o` (Windows probably..)
+<kbd>ctrl</kbd> + <kbd>option</kbd> + <kbd>o</kbd> (Mac)
+<kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>o</kbd> (Windows probably..)
 
 ![atom-mermaid in action](https://github.com/y-takey/atom-mermaid/blob/master/atom-mermaid-example.gif)
 
