@@ -95,7 +95,10 @@ module.exports =
       div.id = "mmd-tab"
       div.innerHTML = mmdText
       @html $ div
-      mermaid.init(undefined, "#mmd-tab")
+      try
+        mermaid.parseError = (error, hash)->
+          div.innerHTML = error.replace("\n", "<br>")
+        mermaid.init(undefined, "#mmd-tab")
 
     getTitle: ->
       if @editor?
