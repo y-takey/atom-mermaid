@@ -44,7 +44,7 @@ module.exports =
       @editorSub.dispose()
 
     subscribeToFilePath: (filePath) ->
-      @trigger 'title-changed'
+      atom.commands.dispatch 'atom-mermaid-preview', 'title-changed'
       @handleEvents()
       @renderHTML()
 
@@ -53,7 +53,7 @@ module.exports =
         @editor = @editorForId(editorId)
 
         if @editor?
-          @trigger 'title-changed' if @editor?
+          atom.commands.dispatch 'atom-mermaid-preview', 'title-changed'
           @handleEvents()
         else
           atom.workspace?.paneForItem(this)?.destroyItem(this)
@@ -82,7 +82,8 @@ module.exports =
 
       if @editor?
         @editorSub.add @editor.onDidChange _.debounce(changeHandler, 700)
-        @editorSub.add @editor.onDidChangePath => @trigger 'title-changed'
+        @editorSub.add @editor.onDidChangePath =>
+          atom.commands.dispatch 'atom-mermaid-preview', 'title-changed'
 
     renderHTML: ->
       @showLoading()
@@ -95,9 +96,6 @@ module.exports =
       div.innerHTML = mmdText
       @html $ div
       mermaid.init(undefined, "#mmd-tab")
-
-      @trigger('atom-mermaid-preview:html-changed')
-      atom.commands.dispatch 'atom-mermaid-preview', 'html-changed'
 
     getTitle: ->
       if @editor?
