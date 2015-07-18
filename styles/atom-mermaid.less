@@ -10,7 +10,7 @@
 
   // Can include from mermaid/src/less ?
   // from flow.less
-  .mermaid .label { color:#333}
+  .mermaid .label { color:#333; }
 
   .node rect, .node circle, .node polygon  {
     fill: @mainBkg;
@@ -248,5 +248,10 @@
   text {
     font-family: 'trebuchet ms', verdana, arial;
     font-size:14px;
+  }
+
+  // workaround
+  .label {
+   color: @actorTextColor;
   }
 }
