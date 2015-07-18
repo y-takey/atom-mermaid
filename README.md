@@ -39,7 +39,6 @@ About markdown syntax, Please see [Flowchart](http://knsv.github.io/mermaid/flow
 # Todos
 
 * [ ] show snippet.  e.g.) when types `graph TD;` , show `A-- foo -->B[bar]\nB-.->C((baz)) `
-* [ ] error handling.
 * [ ] styling. Bigger diagram, font,, etc
 
 # Credits
