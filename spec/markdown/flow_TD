@@ -1,5 +1,5 @@
 graph TD;
-  A-->B;
+  A-->|foo|B;
   A-->C;
   B-->D;
   C-->D;
