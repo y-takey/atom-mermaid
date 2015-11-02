@@ -5,7 +5,7 @@ _                     = require 'underscore-plus'
 # Work around: references window object in dagre-d3/lib/d3.js
 d3                    = require 'd3'
 window.d3 = d3
-{mermaidAPI} = require 'mermaid'
+{mermaidAPI} = require 'mermaid/dist/mermaid'
 
 module.exports =
   MERMAID_PROTOCOL: "mermaid-preview:"
