@@ -2,6 +2,7 @@ path                  = require 'path'
 {CompositeDisposable, Disposable} = require 'atom'
 {$, $$$, ScrollView}  = require 'atom-space-pen-views'
 _                     = require 'underscore-plus'
+fs                    = require 'fs-plus'
 # Work around: references window object in dagre-d3/lib/d3.js
 d3                    = require 'd3'
 window.d3 = d3
@@ -71,6 +72,12 @@ module.exports =
       null
 
     handleEvents: =>
+      atom.commands.add @element,
+        'atom-mermaid:save-as': (event) =>
+          event.stopPropagation()
+          @saveAs()
+        'atom-mermaid:copy': (event) =>
+          event.stopPropagation() if @copyToClipboard()
 
       changeHandler = =>
         @renderHTML()
@@ -86,8 +93,10 @@ module.exports =
           atom.commands.dispatch 'atom-mermaid-preview', 'title-changed'
 
     renderHTML: ->
+      @loading = true
       @showLoading()
       @renderHTMLCode() if @editor?
+      @loading = false
 
     renderHTMLCode: (text) ->
       mmdText = @editor.getText()
@@ -122,3 +131,57 @@ module.exports =
     showLoading: ->
       @html $$$ ->
         @div class: 'atom-html-spinner', 'Loading Mermaid Preview\u2026'
+
+    copyToClipboard: ->
+      return false if @loading
+
+      selection = window.getSelection()
+      selectedText = selection.toString()
+      selectedNode = selection.baseNode
+
+      # Use default copy event handler if there is selected text inside this view
+      return false if selectedText and selectedNode? and (@[0] is selectedNode or $.contains(@[0], selectedNode))
+
+      @getHTML (error, html) ->
+        if error?
+          console.warn('Copying Markdown as HTML failed', error)
+        else
+          atom.clipboard.write(html)
+
+      true
+
+    saveAs: ->
+      return if @loading
+
+      filePath = @getPath()
+      title = 'Mermaid to HTML'
+      if filePath
+        title = path.parse(filePath).name
+        filePath += '.png'
+      else
+        filePath = 'untitled.mmd.png'
+        if projectPath = atom.project.getPaths()[0]
+          filePath = path.join(projectPath, filePath)
+
+      return unless htmlFilePath = atom.showSaveDialogSync(filePath)
+
+      svg = @element.getElementsByTagName("svg")[0]
+      svgData = new XMLSerializer().serializeToString(svg)
+      canvas = document.createElement("canvas")
+      @element.appendChild(canvas)
+      canvas.width = svg.clientWidth
+      canvas.height = svg.clientHeight
+      ctx = canvas.getContext("2d")
+      imgsrc = "data:image/svg+xml;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(svgData)))
+      image = new Image()
+
+      image.onload = ()=>
+        ctx.drawImage(image, 0, 0);
+        dataUrl = canvas.toDataURL("image/png", 0.9)
+        matches = dataUrl.match(/^data:.+\/(.+);base64,(.*)$/)
+        buffer = new Buffer(matches[2], 'base64')
+        fs.writeFileSync(htmlFilePath, buffer)
+        @element.removeChild(canvas)
+        atom.notifications.addSuccess "atom-mermaid: Exported a PNG file."
+
+      image.src = imgsrc;

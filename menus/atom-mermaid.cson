@@ -6,6 +6,16 @@
       'command': 'atom-mermaid:toggle'
     }
   ]
+  '.atom-mermaid-preview': [
+    {
+      'label': 'Copy As PNG'
+      'command': 'atom-mermaid:copy'
+    },
+    {
+      'label': 'Save As PNG'
+      'command': 'atom-mermaid:save-as'
+    }
+  ]
 'menu': [
   {
     'label': 'Packages'
