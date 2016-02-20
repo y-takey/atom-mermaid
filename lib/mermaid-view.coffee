@@ -76,8 +76,6 @@ module.exports =
         'atom-mermaid:save-as': (event) =>
           event.stopPropagation()
           @saveAs()
-        'atom-mermaid:copy': (event) =>
-          event.stopPropagation() if @copyToClipboard()
 
       changeHandler = =>
         @renderHTML()
@@ -136,24 +134,6 @@ module.exports =
     showLoading: ->
       @html $$$ ->
         @div class: 'atom-html-spinner', 'Loading Mermaid Preview\u2026'
-
-    copyToClipboard: ->
-      return false if @loading
-
-      selection = window.getSelection()
-      selectedText = selection.toString()
-      selectedNode = selection.baseNode
-
-      # Use default copy event handler if there is selected text inside this view
-      return false if selectedText and selectedNode? and (@[0] is selectedNode or $.contains(@[0], selectedNode))
-
-      @getHTML (error, html) ->
-        if error?
-          console.warn('Copying Markdown as HTML failed', error)
-        else
-          atom.clipboard.write(html)
-
-      true
 
     saveAs: ->
       return if @loading
