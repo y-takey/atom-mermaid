@@ -99,7 +99,12 @@ module.exports =
       @loading = false
 
     renderHTMLCode: (text) ->
+      styles = [
+        "linkStyle default fill:none,stroke:#0D47A1,stroke-width:2px;"
+        "classDef default fill:#B3E5FC,stroke:#0D47A1,stroke-width:2px;"
+      ]
       mmdText = @editor.getText()
+      mmdText = mmdText.replace(/(graph (?:TB|TD);*)/g, "$1\n#{styles.join('\n')}")
       div = document.createElement("div")
       div.id = "mmd-tab"
       div.innerHTML = mmdText
@@ -166,6 +171,7 @@ module.exports =
       return unless htmlFilePath = atom.showSaveDialogSync(filePath)
 
       svg = @element.getElementsByTagName("svg")[0]
+      svg.innerHTML = svg.innerHTML + "<style type='text/css'>.label { color: #000000 !important; } </style>"
       svgData = new XMLSerializer().serializeToString(svg)
       canvas = document.createElement("canvas")
       @element.appendChild(canvas)
@@ -176,6 +182,8 @@ module.exports =
       image = new Image()
 
       image.onload = ()=>
+        # ctx.fillStyle = "#E0F7FA"
+        # ctx.fillRect(0, 0, svg.clientWidth, svg.clientHeight)
         ctx.drawImage(image, 0, 0);
         dataUrl = canvas.toDataURL("image/png", 0.9)
         matches = dataUrl.match(/^data:.+\/(.+);base64,(.*)$/)
