@@ -21,6 +21,8 @@ Then restart Atom editor.
 
 # Usage
 
+## Preview
+
 `right click and select [Mermaid Preview]`
 
 or
@@ -35,6 +37,11 @@ or
 ![atom-mermaid in action](https://github.com/y-takey/atom-mermaid/blob/master/atom-mermaid-example.gif)
 
 About markdown syntax, Please see [Flowchart](http://knsv.github.io/mermaid/flowchart.html) , [Sequence Diagram](http://knsv.github.io/mermaid/sequenceDiagram.html) and [Gantt Diagram](http://knsv.github.io/mermaid/gantt.html)
+
+## Export
+
+`right click on preview tab and select [Save As PNG]`
+
 
 # Requirements
 
