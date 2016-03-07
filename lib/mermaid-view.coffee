@@ -102,7 +102,7 @@ module.exports =
         "classDef default fill:#B3E5FC,stroke:#0D47A1,stroke-width:2px;"
       ]
       mmdText = @editor.getText()
-      mmdText = mmdText.replace(/(graph (?:TB|TD);*)/g, "$1\n#{styles.join('\n')}")
+      mmdText = mmdText.replace(/(graph (?:TB|TD|LR);*)/g, "$1\n#{styles.join('\n')}")
       div = document.createElement("div")
       div.id = "mmd-tab"
       div.innerHTML = mmdText
