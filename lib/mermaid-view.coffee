@@ -100,6 +100,7 @@ module.exports =
       styles = [
         "linkStyle default fill:none,stroke:#0D47A1,stroke-width:2px;"
         "classDef default fill:#B3E5FC,stroke:#0D47A1,stroke-width:2px;"
+        "classDef cluster fill:#FFFFDE,stroke:#AAAA33,stroke-width:2px;"
       ]
       mmdText = @editor.getText()
       mmdText = mmdText.replace(/(graph (?:TB|TD|LR);*)/g, "$1\n#{styles.join('\n')}")
