@@ -1,7 +1,7 @@
 {
   "name": "atom-mermaid",
   "main": "./lib/atom-mermaid",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Preview diagrams and flowcharts by mermaid",
   "keywords": [],
   "activationCommands": {
