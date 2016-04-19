@@ -1,6 +1,11 @@
 # atom-mermaid package
 
+[![APM Version](https://img.shields.io/apm/v/atom-mermaid.svg)](https://atom.io/packages/atom-mermaid)
+[![APM Downloads](https://img.shields.io/apm/dm/atom-mermaid.svg)](https://atom.io/packages/atom-mermaid)
+
 Preview diagrams and flowcharts by mermaid library.
+
+![atom-mermaid](http://y-takey.github.io/atom-mermaid-example.gif)
 
 ## Installation
 
@@ -33,8 +38,6 @@ or
 
 <kbd>ctrl</kbd> + <kbd>option</kbd> + <kbd>o</kbd> (Mac)
 <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>o</kbd> (Windows probably..)
-
-![atom-mermaid in action](https://github.com/y-takey/atom-mermaid/blob/master/atom-mermaid-example.gif)
 
 About markdown syntax, Please see [Flowchart](http://knsv.github.io/mermaid/flowchart.html) , [Sequence Diagram](http://knsv.github.io/mermaid/sequenceDiagram.html) and [Gantt Diagram](http://knsv.github.io/mermaid/gantt.html)
 
