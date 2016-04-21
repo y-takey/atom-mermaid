@@ -38,8 +38,6 @@ module.exports =
 
     serialize: ->
       deserializer : 'MermaidView'
-      filePath     : @getPath()
-      editorId     : @editorId
 
     destroy: ->
       @editorSub.dispose()
