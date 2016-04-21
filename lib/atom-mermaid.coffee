@@ -33,7 +33,7 @@ module.exports = AtomMermaid =
     @subscriptions.dispose()
 
   serialize: ->
-    mermaidViewState: @mermaidView.serialize()
+    dummy: 'dummy'
 
   toggle: ->
     editor = atom.workspace.getActiveTextEditor()
