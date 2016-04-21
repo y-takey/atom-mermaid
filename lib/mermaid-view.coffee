@@ -157,8 +157,9 @@ module.exports =
       svgData = new XMLSerializer().serializeToString(svg)
       canvas = document.createElement("canvas")
       @element.appendChild(canvas)
-      canvas.width = svg.clientWidth
-      canvas.height = svg.clientHeight
+      svgSize = svg.viewBox.baseVal
+      canvas.width = svgSize.width
+      canvas.height = svgSize.height
       ctx = canvas.getContext("2d")
       imgsrc = "data:image/svg+xml;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(svgData)))
       image = new Image()
