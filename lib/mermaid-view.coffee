@@ -150,6 +150,9 @@ module.exports =
 
       return unless htmlFilePath = atom.showSaveDialogSync(filePath)
 
+      style = $('style[title="mermaid-svg-internal-css"]')
+      styleText = style.text().replace(/\.atom\-mermaid\-preview/g, "")
+      style.text(styleText)
       svg = @element.getElementsByTagName("svg")[0]
       svg.innerHTML = svg.innerHTML + "<style type='text/css'>.label { color: #000000 !important; } </style>"
       svgData = new XMLSerializer().serializeToString(svg)
