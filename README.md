@@ -9,7 +9,7 @@ Preview diagrams and flowcharts by mermaid library.
 
 ## Installation
 
-In Atom, open [Preferences > Packages], search for `mermaid` package. Once it found, click `Install` button to install package.
+In Atom, open [Preferences > Packages], and search the package with `atom-mermaid`. Once it found, click `Install` button to install the package.
 
 ### Manual installation
 
