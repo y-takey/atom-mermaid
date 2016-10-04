@@ -85,7 +85,7 @@ module.exports =
 
       if @editor?
         @editorSub.add @editor.onDidChange _.debounce(changeHandler, 700)
-        @editorSub.add @editor.onDidChangePath =>
+        @editorSub.add @editor.onDidChangePath ->
           atom.commands.dispatch 'atom-mermaid-preview', 'title-changed'
 
     renderHTML: ->
@@ -102,7 +102,8 @@ module.exports =
         "classDef cluster fill:#FFFFDE,stroke:#AAAA33,stroke-width:2px;"
       ]
       mmdText = @editor.getText()
-      mmdText = mmdText.replace(/(graph (?:TB|TD|LR);*)/g, "$1\n#{styles.join('\n')}")
+      mmdText = mmdText.replace(
+        /(graph (?:TB|TD|LR);*)/g, "$1\n#{styles.join('\n')}")
       div = document.createElement("div")
       div.id = "mmd-tab"
       div.innerHTML = mmdText
@@ -154,7 +155,8 @@ module.exports =
       styleText = style.text().replace(/\.atom\-mermaid\-preview/g, "")
       style.text(styleText)
       svg = @element.getElementsByTagName("svg")[0]
-      svg.innerHTML = svg.innerHTML + "<style type='text/css'>.label { color: #000000 !important; } </style>"
+      svg.innerHTML = svg.innerHTML +
+        "<style type='text/css'>.label { color: #000000 !important; } </style>"
       svgData = new XMLSerializer().serializeToString(svg)
       canvas = document.createElement("canvas")
       @element.appendChild(canvas)
@@ -162,13 +164,14 @@ module.exports =
       canvas.width = svgSize.width
       canvas.height = svgSize.height
       ctx = canvas.getContext("2d")
-      imgsrc = "data:image/svg+xml;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(svgData)))
+      imgsrc = "data:image/svg+xml;charset=utf-8;base64," +
+        btoa(unescape(encodeURIComponent(svgData)))
       image = new Image()
 
       image.onload = ()=>
         # ctx.fillStyle = "#E0F7FA"
         # ctx.fillRect(0, 0, svg.clientWidth, svg.clientHeight)
-        ctx.drawImage(image, 0, 0);
+        ctx.drawImage(image, 0, 0)
         dataUrl = canvas.toDataURL("image/png", 0.9)
         matches = dataUrl.match(/^data:.+\/(.+);base64,(.*)$/)
         buffer = new Buffer(matches[2], 'base64')
@@ -176,4 +179,4 @@ module.exports =
         @element.removeChild(canvas)
         atom.notifications.addSuccess "atom-mermaid: Exported a PNG file."
 
-      image.src = imgsrc;
+      image.src = imgsrc
