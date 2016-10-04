@@ -19,5 +19,9 @@
     "fs-plus": "^2.8.1",
     "mermaid": "~6.0",
     "underscore-plus": "^1.6.6"
+  },
+  "devDependencies": {
+    "coffeelint": "^1.16.0",
+    "coffeescope2": "^0.4.2"
   }
 }
