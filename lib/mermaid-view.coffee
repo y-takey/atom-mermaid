@@ -71,9 +71,12 @@ module.exports =
 
     handleEvents: =>
       atom.commands.add @element,
-        'atom-mermaid:save-as': (event) =>
+        'atom-mermaid:save-as-png': (event) =>
           event.stopPropagation()
-          @saveAs()
+          @saveAs("png")
+        'atom-mermaid:save-as-svg': (event) =>
+          event.stopPropagation()
+          @saveAs("svg")
 
       changeHandler = =>
         @renderHTML()
@@ -136,16 +139,16 @@ module.exports =
       @html $$$ ->
         @div class: 'atom-html-spinner', 'Loading Mermaid Preview\u2026'
 
-    saveAs: ->
+    saveAs: (fileType)->
       return if @loading
 
       filePath = @getPath()
       title = 'Mermaid to HTML'
       if filePath
         title = path.parse(filePath).name
-        filePath += '.png'
+        filePath += ".#{fileType}"
       else
-        filePath = 'untitled.mmd.png'
+        filePath = "untitled.mmd.#{fileType}"
         if projectPath = atom.project.getPaths()[0]
           filePath = path.join(projectPath, filePath)
 
@@ -158,6 +161,11 @@ module.exports =
       svg.innerHTML = svg.innerHTML +
         "<style type='text/css'>.label { color: #000000 !important; } </style>"
       svgData = new XMLSerializer().serializeToString(svg)
+
+      if fileType == "svg"
+        @writeFile(htmlFilePath, fileType, svgData)
+        return
+
       canvas = document.createElement("canvas")
       @element.appendChild(canvas)
       svgSize = svg.viewBox.baseVal
@@ -175,8 +183,11 @@ module.exports =
         dataUrl = canvas.toDataURL("image/png", 0.9)
         matches = dataUrl.match(/^data:.+\/(.+);base64,(.*)$/)
         buffer = new Buffer(matches[2], 'base64')
-        fs.writeFileSync(htmlFilePath, buffer)
+        @writeFile(htmlFilePath, fileType, buffer)
         @element.removeChild(canvas)
-        atom.notifications.addSuccess "atom-mermaid: Exported a PNG file."
 
       image.src = imgsrc
+
+    writeFile: (filePath, fileType, data)->
+      fs.writeFileSync(filePath, data)
+      atom.notifications.addSuccess "atom-mermaid: Exported a #{fileType} file."

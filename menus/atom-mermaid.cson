@@ -9,8 +9,12 @@
   '.atom-mermaid-preview': [
     {
       'label': 'Save As PNG'
-      'command': 'atom-mermaid:save-as'
-    }
+      'command': 'atom-mermaid:save-as-png'
+    },
+    {
+      'label': 'Save As SVG'
+      'command': 'atom-mermaid:save-as-svg'
+    },
   ]
 'menu': [
   {
