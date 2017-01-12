@@ -49,7 +49,7 @@ module.exports = AtomMermaid =
 
     previousActivePane = atom.workspace.getActivePane()
     atom.workspace.open(uri, split: 'right', searchAllPanes: true)
-      .done (mermaidView) ->
+      .then (mermaidView) ->
         if mermaidView instanceof MermaidView
           mermaidView.renderHTML()
           previousActivePane.activate()
