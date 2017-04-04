@@ -8,6 +8,13 @@ d3                    = require 'd3'
 window.d3 = d3
 {mermaidAPI} = require 'mermaid/dist/mermaid'
 
+defaultStyles = [
+  "linkStyle default fill:none,stroke:#0D47A1,stroke-width:2px;"
+  "classDef default fill:#B3E5FC,stroke:#0D47A1,stroke-width:2px;"
+  "classDef node fill:#B3E5FC,stroke:#0D47A1,stroke-width:2px;"
+  "classDef cluster fill:#FFFFDE,stroke:#AAAA33,stroke-width:2px;"
+]
+
 module.exports =
   MERMAID_PROTOCOL: "mermaid-preview:"
   MermaidView: class MermaidView extends ScrollView
@@ -98,15 +105,13 @@ module.exports =
       @loading = false
 
     renderHTMLCode: (text) ->
-      styles = [
-        "linkStyle default fill:none,stroke:#0D47A1,stroke-width:2px;"
-        "classDef default fill:#B3E5FC,stroke:#0D47A1,stroke-width:2px;"
-        "classDef node fill:#B3E5FC,stroke:#0D47A1,stroke-width:2px;"
-        "classDef cluster fill:#FFFFDE,stroke:#AAAA33,stroke-width:2px;"
-      ]
       mmdText = @editor.getText()
+      styles = defaultStyles.map (style)->
+        s = style.split(" ")
+        style if (new RegExp("#{s[0]}\\s+#{s[1]}")).test(mmdText)
+
       mmdText = mmdText.replace(
-        /(graph (?:TB|TD|LR);*)/g, "$1\n#{styles.join('\n')}")
+        /(graph (?:TB|TD|LR);*)/g, "$1\n#{_.compact(styles).join('\n')}")
       div = document.createElement("div")
       div.id = "mmd-tab"
       div.innerHTML = mmdText
