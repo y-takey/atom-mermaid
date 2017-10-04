@@ -6,7 +6,7 @@ fs                    = require 'fs-plus'
 # Work around: references window object in dagre-d3/lib/d3.js
 d3                    = require 'd3'
 window.d3 = d3
-{mermaidAPI} = require 'mermaid/dist/mermaid'
+mermaid = require 'mermaid'
 
 defaultStyles = [
   "linkStyle default fill:none,stroke:#0D47A1,stroke-width:2px;"
@@ -113,13 +113,12 @@ module.exports =
       mmdText = mmdText.replace(
         /(graph (?:TB|TD|LR);*)/g, "$1\n#{_.compact(styles).join('\n')}")
       div = document.createElement("div")
-      div.id = "mmd-tab"
       div.innerHTML = mmdText
       @html $ div
       try
-        global.mermaid.parseError = (error, hash)->
+        mermaid.parseError = (error, hash)->
           div.innerHTML = error.replace("\n", "<br>")
-        global.mermaid.init(undefined, "#mmd-tab")
+        mermaid.init(undefined, div)
 
     getTitle: ->
       if @editor?
