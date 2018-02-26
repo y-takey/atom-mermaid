@@ -7,6 +7,7 @@ fs                    = require 'fs-plus'
 d3                    = require 'd3'
 window.d3 = d3
 mermaid = require 'mermaid'
+{dialog} = require('electron').remote
 
 defaultStyles = [
   "linkStyle default fill:none,stroke:#0D47A1,stroke-width:2px;"
@@ -156,8 +157,12 @@ module.exports =
         if projectPath = atom.project.getPaths()[0]
           filePath = path.join(projectPath, filePath)
 
-      return unless htmlFilePath = atom.showSaveDialogSync(filePath)
+      dialog.showSaveDialog
+        title: 'Save File'
+        defaultPath: filePath
+      , _.partial(_.bind(@saveFile, @), fileType)
 
+    saveFile: (fileType, htmlFilePath)->
       style = $('style[title="mermaid-svg-internal-css"]')
       styleText = style.text().replace(/\.atom\-mermaid\-preview/g, "")
       style.text(styleText)
