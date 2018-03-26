@@ -114,12 +114,13 @@ module.exports =
       mmdText = mmdText.replace(
         /(graph (?:TB|TD|LR);*)/g, "$1\n#{_.compact(styles).join('\n')}")
       div = document.createElement("div")
+      div.classList.add('mermaid');
       div.innerHTML = mmdText
       @html $ div
       try
         mermaid.parseError = (error, hash)->
           div.innerHTML = error.replace("\n", "<br>")
-        mermaid.init(undefined, div)
+        mermaid.init({ "theme": "default" }, div)
 
     getTitle: ->
       if @editor?
