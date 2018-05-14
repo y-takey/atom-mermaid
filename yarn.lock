@@ -751,7 +751,7 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0"
 
-mermaid@8.0.0:
+mermaid@8.0.0-rc.8:
   version "8.0.0-rc.8"
   resolved "https://registry.yarnpkg.com/mermaid/-/mermaid-8.0.0-rc.8.tgz#74ed54d0d46e9ee71c4db2730b2d83d516a21e72"
   dependencies:
