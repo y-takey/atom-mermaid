@@ -39,12 +39,11 @@ or
 <kbd>ctrl</kbd> + <kbd>option</kbd> + <kbd>o</kbd> (Mac)
 <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>o</kbd> (Windows probably..)
 
-About markdown syntax, Please see [Flowchart](http://knsv.github.io/mermaid/flowchart.html) , [Sequence Diagram](http://knsv.github.io/mermaid/sequenceDiagram.html) and [Gantt Diagram](http://knsv.github.io/mermaid/gantt.html)
+About markdown syntax, Please see [Flowchart](https://mermaidjs.github.io/flowchart.html) , [Sequence Diagram](http://mermaidjs.github.io/sequenceDiagram.html) and [Gantt Diagram](http://mermaidjs.github.io/gantt.html)
 
 ## Export
 
 `right click on preview tab and select [Save As PNG]`
-
 
 # Requirements
 
@@ -54,18 +53,19 @@ https://github.com/nodejs/node-gyp
 
 # Todos
 
-* [ ] show snippet.  e.g.) when types `graph TD;` , show `A-- foo -->B[bar]\nB-.->C((baz)) `
-* [ ] styling. Bigger diagram, font,, etc
+- [ ] show snippet. e.g.) when types `graph TD;` , show `A-- foo -->B[bar]\nB-.->C((baz))`
+- [ ] styling. Bigger diagram, font,, etc
 
 ## Contributing
 
 I don't have a deep knowledge of node.js and atom-editor. so, help me!
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+1.  Fork it
+2.  Create your feature branch (`git checkout -b my-new-feature`)
+3.  Commit your changes (`git commit -am 'Add some feature'`)
+4.  Push to the branch (`git push origin my-new-feature`)
+5.  Create new Pull Request
 
 # Credits
-Many thanks to the [mermaid](https://github.com/knsv/mermaid)  project!
+
+Many thanks to the [mermaid](https://github.com/knsv/mermaid) project!
