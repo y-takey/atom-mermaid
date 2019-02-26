@@ -164,6 +164,8 @@ module.exports =
       , _.partial(_.bind(@saveFile, @), fileType)
 
     saveFile: (fileType, htmlFilePath)->
+      return unless htmlFilePath
+
       style = $('style[title="mermaid-svg-internal-css"]')
       styleText = style.text().replace(/\.atom\-mermaid\-preview/g, "")
       style.text(styleText)
