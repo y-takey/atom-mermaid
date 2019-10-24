@@ -194,7 +194,7 @@ module.exports =
         ctx.drawImage(image, 0, 0)
         dataUrl = canvas.toDataURL("image/png", 0.9)
         matches = dataUrl.match(/^data:.+\/(.+);base64,(.*)$/)
-        buffer = new Buffer(matches[2], 'base64')
+        buffer = Buffer.from(matches[2], 'base64')
         @writeFile(htmlFilePath, fileType, buffer)
         @element.removeChild(canvas)
 
