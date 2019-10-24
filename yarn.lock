@@ -362,7 +362,7 @@ d@~0.1.1:
   dependencies:
     es5-ext "~0.10.2"
 
-dagre-d3-renderer@0.5.8, dagre-d3-renderer@^0.5.8:
+dagre-d3-renderer@^0.5.8:
   version "0.5.8"
   resolved "https://registry.yarnpkg.com/dagre-d3-renderer/-/dagre-d3-renderer-0.5.8.tgz#aa071bb71d3c4d67426925906f3f6ddead49c1a3"
   dependencies:
@@ -532,9 +532,10 @@ jquery@2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.1.4.tgz#228bde698a0c61431dc2630a6a154f15890d2317"
 
-jquery@>=3.0.0:
+jquery@>=3.4.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
 lodash@^4.17.11, lodash@^4.17.5:
   version "4.17.15"

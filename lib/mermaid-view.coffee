@@ -6,7 +6,7 @@ fs                    = require 'fs-plus'
 # Work around: references window object in dagre-d3/lib/d3.js
 d3                    = require 'd3'
 window.d3 = d3
-mermaid = require 'mermaid'
+mermaid = require 'mermaid/dist/mermaid.js'
 {dialog} = require('electron').remote
 
 defaultStyles = [
@@ -194,7 +194,7 @@ module.exports =
         ctx.drawImage(image, 0, 0)
         dataUrl = canvas.toDataURL("image/png", 0.9)
         matches = dataUrl.match(/^data:.+\/(.+);base64,(.*)$/)
-        buffer = new Buffer(matches[2], 'base64')
+        buffer = Buffer.from(matches[2], 'base64')
         @writeFile(htmlFilePath, fileType, buffer)
         @element.removeChild(canvas)
 

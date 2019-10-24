@@ -16,9 +16,8 @@
   "dependencies": {
     "atom-space-pen-views": "2.2.0",
     "d3": "^5.12.0",
-    "dagre-d3-renderer": "0.5.8",
     "fs-plus": "^3.1.1",
-    "jquery": ">=3.0.0",
+    "jquery": ">=3.4.0",
     "mermaid": "^8.4.0",
     "underscore-plus": "^1.6.8"
   },
