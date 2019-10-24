@@ -6,7 +6,7 @@ fs                    = require 'fs-plus'
 # Work around: references window object in dagre-d3/lib/d3.js
 d3                    = require 'd3'
 window.d3 = d3
-mermaid = require 'mermaid'
+mermaid = require 'mermaid/dist/mermaid.js'
 {dialog} = require('electron').remote
 
 defaultStyles = [
