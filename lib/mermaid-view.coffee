@@ -118,9 +118,9 @@ module.exports =
       div.innerHTML = mmdText
       @html $ div
       try
-        mermaid.parseError = (error, hash)->
-          div.innerHTML = error.replace("\n", "<br>")
         mermaid.init({ "theme": "default" }, div)
+      catch error
+        div.innerHTML = error.message.replace("\n", "<br>")
 
     getTitle: ->
       if @editor?
