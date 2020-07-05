@@ -22,7 +22,6 @@
     "underscore-plus": "^1.6.8"
   },
   "devDependencies": {
-    "coffeelint": "2.1.0",
     "coffeescope2": "0.5.1"
   }
 }
