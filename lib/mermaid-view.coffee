@@ -33,6 +33,10 @@ module.exports =
       @div class: 'atom-mermaid-preview native-key-bindings', tabindex: -1
 
     constructor: ({@editorId, filePath}) ->
+      @no_mermaid_errors = false # for scroll positions
+      @top_position = 0
+      @left_position = 0
+    
       super
 
       if @editorId?
@@ -87,10 +91,18 @@ module.exports =
           @saveAs("svg")
 
       changeHandler = =>
-        @renderHTML()
         pane = atom.workspace.paneForURI(@getURI())
         if pane? and pane isnt atom.workspace.getActivePane()
+          mermaid_item = pane.getActiveItem()
+          
+          if @no_mermaid_errors
+            @top_position = mermaid_item.scrollTop()
+            @left_position = mermaid_item.scrollLeft()
+            
+          @renderHTML()
           pane.activateItem(this)
+          mermaid_item.scrollTop(@top_position)
+          mermaid_item.scrollLeft(@left_position)
 
       @editorSub = new CompositeDisposable
 
@@ -119,8 +131,10 @@ module.exports =
       @html $ div
       try
         mermaid.init({ "theme": "default" }, div)
+        @no_mermaid_errors = true
       catch error
         div.innerHTML = error.message.replace("\n", "<br>")
+        @no_mermaid_errors = false
 
     getTitle: ->
       if @editor?
