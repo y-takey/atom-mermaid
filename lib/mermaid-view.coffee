@@ -36,7 +36,7 @@ module.exports =
       @no_mermaid_errors = false # for scroll positions
       @top_position = 0
       @left_position = 0
-    
+
       super
 
       if @editorId?
@@ -94,15 +94,17 @@ module.exports =
         pane = atom.workspace.paneForURI(@getURI())
         if pane? and pane isnt atom.workspace.getActivePane()
           mermaid_item = pane.getActiveItem()
-          
-          if @no_mermaid_errors
+
+          if @no_mermaid_errors and mermaid_item
             @top_position = mermaid_item.scrollTop()
             @left_position = mermaid_item.scrollLeft()
-            
+
           @renderHTML()
           pane.activateItem(this)
-          mermaid_item.scrollTop(@top_position)
-          mermaid_item.scrollLeft(@left_position)
+
+          if mermaid_item
+            mermaid_item.scrollTop(@top_position)
+            mermaid_item.scrollLeft(@left_position)
 
       @editorSub = new CompositeDisposable
 
