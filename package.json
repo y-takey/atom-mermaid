@@ -18,7 +18,7 @@
     "d3": "^5.16.0",
     "fs-plus": "^3.1.1",
     "jquery": "^3.5.1",
-    "mermaid": "^8.5.2",
+    "mermaid": "^8.8.2",
     "underscore-plus": "^1.6.8"
   },
   "devDependencies": {

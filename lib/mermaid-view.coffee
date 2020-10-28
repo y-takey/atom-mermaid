@@ -129,7 +129,7 @@ module.exports =
         /(graph (?:TB|TD|LR);*)/g, "$1\n#{_.compact(styles).join('\n')}")
       div = document.createElement("div")
       div.classList.add('mermaid');
-      div.innerHTML = mmdText
+      div.textContent = mmdText
       @html $ div
       try
         mermaid.init({ "theme": "default" }, div)
