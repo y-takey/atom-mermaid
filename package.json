@@ -16,8 +16,8 @@
   "dependencies": {
     "atom-space-pen-views": "2.2.0",
     "fs-plus": "^3.1.1",
-    "jquery": "^3.5.1",
-    "mermaid": "^8.8.2",
+    "jquery": "^3.6.0",
+    "mermaid": "^8.11.2",
     "underscore-plus": "^1.6.8"
   },
   "devDependencies": {
