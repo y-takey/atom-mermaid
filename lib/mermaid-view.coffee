@@ -174,10 +174,12 @@ module.exports =
         if projectPath = atom.project.getPaths()[0]
           filePath = path.join(projectPath, filePath)
 
-      dialog.showSaveDialog
+      filePath = dialog.showSaveDialogSync
         title: 'Save File'
         defaultPath: filePath
-      , _.partial(_.bind(@saveFile, @), fileType)
+
+      if filePath
+        @saveFile(fileType, filePath)
 
     saveFile: (fileType, htmlFilePath)->
       return unless htmlFilePath
